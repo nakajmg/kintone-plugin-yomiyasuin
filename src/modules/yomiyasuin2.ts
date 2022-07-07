@@ -37,7 +37,7 @@ export const handlers: Record<string, Handler> = {
   line: (h: H, node: MdastNode) => {
     return {
       type: "element",
-      tagName: "p",
+      tagName: "div",
       properties: {
         class: ["yomiyasuin-line"],
       },
@@ -65,12 +65,15 @@ export const handlers: Record<string, Handler> = {
       .use(rehypeRaw)
     // @ts-ignore
     const mdast = processer.parse(node.children[0].value)
+    // console.log(mdast)
+
     // @ts-ignore
-    const hast = processer.runSync(mdast.children[0])
+    const hast = processer.runSync(mdast)
+    console.log(hast.children[2])
 
     return {
       type: "element",
-      tagName: "span",
+      tagName: "div",
       properties: {
         class: ["yomiyasuin-selif"],
       },
@@ -141,7 +144,8 @@ function createVisitor(userData: any) {
               {
                 type: "text",
                 // リスト記法が来ると無視されるのでパッチ対応。数値のリストだけ対応してる
-                value: selif.replace(/\d\./g, (matched) => matched.replace(".", "．")),
+                value: selif,
+                // value: selif.replace(/\d\./g, (matched) => matched.replace(".", "．")),
               },
             ],
           },

@@ -8,6 +8,7 @@ export const combiineToLines = (partialMd: string) => {
       ret[cursor] = ""
     }
     ret[cursor] += `${ret[cursor] ? "\n" : ""}${line.trim()}`
+    console.log(ret[cursor])
     return ret
   }, [])
   return lines

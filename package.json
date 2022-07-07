@@ -5,15 +5,16 @@
   "scripts": {
     "start": "npm-run-all -p compile:watch develop \"upload -- --watch\"",
     "build": "npm-run-all compile pack",
-    "develop": "node develop.js",
+    "develop": "node develop.cjs",
     "upload": "export $(cat .env | xargs) && kintone-plugin-uploader dist/plugin.zip --waiting-dialog-ms 3000",
     "compile": "rollup -c",
     "compile:watch": "rollup -c -w",
     "pack": "kintone-plugin-packer --ppk private.ppk --out dist/plugin.zip .",
     "lint": "eslint src",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
+  "type": "module",
   "dependencies": {
     "hast-util-to-html": "^8.0.2",
     "mdast-util-to-hast": "^12.0.0",

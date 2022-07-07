@@ -5,7 +5,7 @@ import rehypeStringify from "rehype-stringify"
 import { plugin, handlers } from "./yomiyasuin2"
 import rehypeExternalLinks from "rehype-external-links"
 
-export const toHtml = async (markdown: string, userData: any) => {
+export const toSelif = async (markdown: string, userData: any) => {
   const result = await unified()
     .use(remarkParse)
     .use(plugin, {
